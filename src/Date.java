@@ -41,7 +41,7 @@ public class Date {
         int countDays = lastDayInMonth() - this.day;
         if (this.month < 12) {
             for (int i = this.month; i < month; i++) {
-                countDays = countDays + DAYSINMOMTH[leapVariant][i-1];
+                countDays = countDays + DAYSINMOMTH[leapVariant][i - 1];
             }
         }
         return countDays;
@@ -56,39 +56,29 @@ public class Date {
         final int[] shiftForMonth = {0, 2, 0, 0};
         String result = format;
         for (String i = "MMMM"; i.length() > 0; i = i.substring(1)) {
-            while (result.contains(i)) {
-                result = result.replace(i, monthName[i.length() - 1][month - 1]);
-            }
+            result = result.replace(i, monthName[i.length() - 1][month - 1]);
         }
         for (String i = "YYYY"; i.length() > 0; i = i.substring(1)) {
-            while (result.contains(i)) {
-                result = result.replace(i, strYear.substring(shiftForMonth[i.length() - 1]));
-            }
+            result = result.replace(i, strYear.substring(shiftForMonth[i.length() - 1]));
         }
         for (String i = "yyyy"; i.length() > 0; i = i.substring(1)) {
-            while (result.contains(i)) {
-                result = result.replace(i, strYear.substring(shiftForMonth[i.length() - 1]));
-            }
+            result = result.replace(i, strYear.substring(shiftForMonth[i.length() - 1]));
         }
-        while (result.contains("dd")||result.contains("DD")) {
-            result = result.replace("dd", strDay);
-            result = result.replace("DD", strDay);
-        }
-        while (result.contains("d") ||result.contains("D")) {
-            result = result.replace("d", (strDay.charAt(0) == '0') ? strDay.substring(1) : strDay);
-            result = result.replace("D", (strDay.charAt(0) == '0') ? strDay.substring(1) : strDay);
-        }
+        result = result.replace("dd", strDay);
+        result = result.replace("DD", strDay);
+        result = result.replace("d", (strDay.charAt(0) == '0') ? strDay.substring(1) : strDay);
+        result = result.replace("D", (strDay.charAt(0) == '0') ? strDay.substring(1) : strDay);
         return result;
     }
 
     // печать дней, начиная со для dd из аданной даты до последнего дня inMonth месяца
-    public void printDays(String inMonth,String format) {
+    public void printDays(String inMonth, String format) {
         int month = Integer.parseInt(inMonth);
         int daysInMonth = lastDayInMonth();
         if ((day + 1) < daysInMonth)
             for (int i = day; i < daysInMonth + 1; i++) {
-                String curDay = ("00" + Integer.toString(i)).substring(Integer.toString(i).length()) + '.'+ inMonth + '.'+ strYear ;
-                     System.out.println( new Date(curDay).formatDay(format));
+                String curDay = ("00" + Integer.toString(i)).substring(Integer.toString(i).length()) + '.' + inMonth + '.' + strYear;
+                System.out.println(new Date(curDay).formatDay(format));
             }
     }
 
@@ -113,7 +103,8 @@ public class Date {
         }
         return false;
     }
-    public int lastDayInMonth(){
+
+    public int lastDayInMonth() {
         return DAYSINMOMTH[(isLeapYear() ? 0 : 1)][month - 1];
     }
 
