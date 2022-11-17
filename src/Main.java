@@ -9,7 +9,7 @@ public class Main {
         boolean inputIsNotCorrect = true;
         while (inputIsNotCorrect) {
             System.out.print("Введите дату в формате ДД.ММ.ГГГГ или ДД-ММ-ГГГГ: ");
-            testDay = in.next();
+            testDay = in.nextLine();
             inputIsNotCorrect = (!(testDay.matches("\\d{2}+[.,-]\\d{2}+[.,-]\\d{4}")));
             if (inputIsNotCorrect) {
                 System.out.println("Ошибка. Неверный формат");
@@ -20,10 +20,10 @@ public class Main {
             return;
         }
         System.out.print("Введите формат, используя символы d(D),M,y(Y): ");
-        String format = in.next();
+        String format = in.nextLine();
         System.out.println(day.formatDay(format));
         System.out.printf("Год: %s - %s год\n", day.formatDay("YYYY"), (day.isLeapYear() ? "високосный " : "не високосный"));
-        System.out.printf("Месяц: %s, содержит %s дней\n ",day.StrMonth(),Integer.toString(day.lastDayInMonth()));
+        System.out.printf("Месяц: %s, содержит %s дней\n",day.StrMonth(),Integer.toString(day.lastDayInMonth()));
         System.out.printf("Число: %s - %s\n", day.formatDay("dd"), day.dayOfWeek());
         inputIsNotCorrect = true;
         while (inputIsNotCorrect) {
